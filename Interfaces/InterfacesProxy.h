@@ -30,6 +30,9 @@
 #	define VT_TRAP
 #endif
 
+#ifdef DWORD
+#	undef DWORD
+#endif
 typedef unsigned long DWORD;
 
 #define IFACE_PTR(x) (( DWORD* )*( DWORD* )x)
@@ -210,7 +213,7 @@ namespace SourceSdk
 
 		void* LoadInterface(CreateInterfaceFn factory, const char * name_no_version, int & loaded_version);
 	
-		bool Load(CreateInterfaceFn game_factory, CreateInterfaceFn interface_factory);
+		bool Load(CreateInterfaceFn game_factory, CreateInterfaceFn interface_factory, char const * game_name);
 		GameId GetGameId();
 		
 		IServerPluginHelpers001* GetServerPluginHelpers();

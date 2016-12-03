@@ -1814,8 +1814,34 @@ namespace SourceSdk
 			size_t dir_start = cmd.find("-game");
 			if (dir_start == basic_string::npos) return;
 			dir_start += 5;
-			while (cmd[dir_start] == ' ') ++dir_start;
-			while (cmd[dir_start] != ' ') dir.append(cmd[dir_start++]);
+			while
+			( 
+				!(
+					(cmd[dir_start] >= 'A')
+					&&
+					(cmd[ dir_start ] <= 'Z')
+				) 
+				&& 
+				!(
+					(cmd[ dir_start ] >= 'a') 
+					&&
+					(cmd[ dir_start ] <= 'z')
+				)
+			) ++dir_start;
+			while
+			(
+				(
+					cmd[ dir_start ] >= 'A'
+					&&
+					cmd[ dir_start ] <= 'Z'
+				) 
+				||
+				(
+					cmd[ dir_start ] >= 'a'
+					&&
+					cmd[ dir_start ] <= 'z'
+				)
+			) dir.append(cmd[dir_start++]);
 		}
 
 		void * LoadInterface(CreateInterfaceFn factory, const char * name_no_version, int & loaded_version)
@@ -1837,19 +1863,19 @@ namespace SourceSdk
 			return iface;
 		}
 
-		bool Load(CreateInterfaceFn game_factory, CreateInterfaceFn interface_factory)
+		bool Load(CreateInterfaceFn game_factory, CreateInterfaceFn interface_factory, char const * game_dir )
 		{
-			basic_string game_dir;
-			GetGameDir(game_dir); // Try to see if this works when the server is launched using GUI
-			if (stricmp(game_dir.c_str(), "csgo") == 0)
+			//basic_string game_dir;
+			//GetGameDir(game_dir); // Try to see if this works when the server is launched using GUI
+			if (stricmp(game_dir, "csgo") == 0)
 			{
 				m_game = SourceSdk::CounterStrikeGlobalOffensive;
-				std::cout << "Detected game CSGO" << std::endl;
+				std::cout << "Detected game CS:GO" << std::endl;
 			}
-			else if (stricmp(game_dir.c_str(), "cstrike") == 0)
+			else if (stricmp(game_dir, "cstrike") == 0)
 			{
 				m_game = CounterStrikeSource;
-				std::cout << "Detected game CSS" << std::endl;
+				std::cout << "Detected game CS:S" << std::endl;
 			}
 			// add more here
 			else

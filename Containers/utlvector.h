@@ -6,6 +6,8 @@
 
 #include "SdkPreprocessors.h"
 
+#include <type_traits>
+
 	template< class T, class I = int >
 	class CUtlMemory
 	{
@@ -413,6 +415,7 @@
 		void CopyArray( const T *pArray, int size );
 		void Swap( CUtlVector< T, A > &vec );
 		int AddVectorToTail( CUtlVector<T, A> const &src );
+		int AddVectorToTail ( CUtlVector<T, A> &&src );
 		int Find( const T& src ) const;
 		bool HasElement( const T& src ) const;
 		void EnsureCapacity( int num );
@@ -777,14 +780,38 @@
 	}
 
 	template< typename T, class A >
-	int CUtlVector<T, A>::AddVectorToTail( CUtlVector const &src )
+	int CUtlVector<T, A>::AddVectorToTail( CUtlVector<T, A> const &src )
 	{
+		static_assert( std::is_copy_assignable<T>::value, "element type must be move assignable" );
+		static_assert( !std::is_trivially_copy_assignable<T>::value, "You must implement move assignation to element type" );
+
 		int base = Count();
 		AddMultipleToTail( src.Count() );
 		for ( int i=0; i < src.Count(); i++ )
 		{
 			(*this)[base + i] = src[i];
 		}
+		return base;
+	}
+
+	template< typename T, class A >
+	int CUtlVector<T, A>::AddVectorToTail ( CUtlVector<T, A> &&src )
+	{
+		static_assert( std::is_move_assignable<T>::value, "element type must be move assignable" );
+		static_assert( !std::is_trivially_move_assignable<T>::value, "You must implement move assignation to element type" );
+
+		if( this != &src )
+		{
+			int base = Count ();
+			AddMultipleToTail ( src.Count () );
+			for( int i = 0; i < src.Count (); i++ )
+			{
+				( *this )[ base + i ] = std::move ( src[ i ] );
+			}
+
+			src.Purge ();
+		}
+
 		return base;
 	}
 
