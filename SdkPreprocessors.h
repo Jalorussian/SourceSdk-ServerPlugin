@@ -17,6 +17,8 @@
 #	endif
 #endif
 
+typedef unsigned long DWORD;
+
 #define abstract_class class
 #define EVENT_DEBUG_ID_INIT			42
 #define EVENT_DEBUG_ID_SHUTDOWN		13

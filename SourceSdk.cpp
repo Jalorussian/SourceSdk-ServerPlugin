@@ -1806,6 +1806,15 @@ namespace SourceSdk
 	#endif
 		}
 
+		bool my_isalpha(char c)
+		{
+			if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+			{
+				return true;
+			}
+			return false;
+		}
+
 		void GetGameDir(basic_string & dir)
 		{
 			dir.clear();
@@ -1814,8 +1823,8 @@ namespace SourceSdk
 			size_t dir_start = cmd.find("-game");
 			if (dir_start == basic_string::npos) return;
 			dir_start += 5;
-			while (cmd[dir_start] == ' ') ++dir_start;
-			while (cmd[dir_start] != ' ') dir.append(cmd[dir_start++]);
+			while (!my_isalpha(cmd[dir_start])) ++dir_start;
+			while (my_isalpha(cmd[dir_start])) dir.append(cmd[dir_start++]);
 		}
 
 		void * LoadInterface(CreateInterfaceFn factory, const char * name_no_version, int & loaded_version)

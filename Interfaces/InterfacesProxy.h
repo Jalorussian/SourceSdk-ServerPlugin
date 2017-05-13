@@ -30,8 +30,6 @@
 #	define VT_TRAP
 #endif
 
-typedef unsigned long DWORD;
-
 #define IFACE_PTR(x) (( DWORD* )*( DWORD* )x)
 
 #ifdef WIN32
