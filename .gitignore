@@ -22,6 +22,10 @@
 *.a
 *.lib
 
+!Interfaces/Protobuf/protobuf-2.5.0/vsprojects/Release/libprotobuf.lib 
+!Interfaces/Protobuf/protobuf-2.5.0/vsprojects/Debug/libprotobuf.lib 
+!Interfaces/Protobuf/protobuf-2.5.0/src/.libs/libprotobuf.a
+
 # Executables
 *.exe
 *.out
