@@ -6,3 +6,6 @@ golden*
 !.gitignore
 !vsprojects/libprotobuf.vcxproj
 !vsprojects/libprotobuf.vcxproj.filters
+!vsprojects/Release/libprotobuf.lib 
+!vsprojects/Debug/libprotobuf.lib 
+!src/.libs/libprotobuf.a
