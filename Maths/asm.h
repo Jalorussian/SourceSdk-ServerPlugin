@@ -6,8 +6,9 @@ namespace SourceSdk
 	void inline SinCos( float radians, float *sine, float *cosine )
 	{
 	#ifdef WIN32
-		_asm
-		{
+	#ifndef MINGW
+		__asm
+		(
 			fld		DWORD PTR [radians]
 			fsincos
 
@@ -16,7 +17,14 @@ namespace SourceSdk
 
 			fstp DWORD PTR [edx]
 			fstp DWORD PTR [eax]
-		}
+		);
+	#else
+		double __cosr, __sinr;
+		__asm ("fsincos" : "=t" (__cosr), "=u" (__sinr) : "0" (radians));
+
+		*sine = __sinr;
+		*cosine = __cosr;
+	#endif
 	#else
 		double __cosr, __sinr;
 		__asm ("fsincos" : "=t" (__cosr), "=u" (__sinr) : "0" (radians));

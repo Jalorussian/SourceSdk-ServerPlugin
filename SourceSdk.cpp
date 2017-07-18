@@ -12,7 +12,7 @@
 #	include <unistd.h>
 #	include <alloca.h>
 #else
-#	include <Windows.h>
+#	include <windows.h>
 #endif
 #include <malloc.h>
 

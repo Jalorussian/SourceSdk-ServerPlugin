@@ -36,7 +36,7 @@ namespace SourceSdk
 		vec_t w;
 	};
 	
-	struct ALIGN16 VectorAligned : Vector
+	struct alignas(16) VectorAligned : Vector
 	{
 		VectorAligned() {}
 		VectorAligned(const VectorAligned& other)
@@ -55,7 +55,7 @@ namespace SourceSdk
 			y = b;
 			z = c;
 		}
-	} ALIGN16_POST;
+	};
 	
 	typedef Vector QAngle;
 	typedef VectorAligned QAngleAligned;

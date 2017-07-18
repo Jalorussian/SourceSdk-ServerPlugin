@@ -66,40 +66,6 @@ typedef unsigned long DWORD;
 #define RAD2DEG( x  )  ( (float)(x) * (float)(180.f / M_PI_F) )
 #define DEG2RAD( x  )  ( (float)(x) * (float)(M_PI_F / 180.f) )
 
-#if defined( GNUC )
-#define DECL_ALIGN(x) 			__attribute__((aligned(x)))
-
-#define ALIGNX(x)
-#define ALIGN4
-#define ALIGN8 
-#define ALIGN16
-#define ALIGN32
-#define ALIGN128
-
-#define ALIGNX_POST(x) DECL_ALIGN(x)
-#define ALIGN4_POST DECL_ALIGN(4)
-#define ALIGN8_POST DECL_ALIGN(8)
-#define ALIGN16_POST DECL_ALIGN(16)
-#define ALIGN32_POST DECL_ALIGN(32)
-#define ALIGN128_POST DECL_ALIGN(128)
-#else
-#define DECL_ALIGN(x)			__declspec( align( x ) )
-
-#define ALIGNX(x) DECL_ALIGN(x)
-#define ALIGN4 DECL_ALIGN(4)
-#define ALIGN8 DECL_ALIGN(8)
-#define ALIGN16 DECL_ALIGN(16)
-#define ALIGN32 DECL_ALIGN(32)
-#define ALIGN128 DECL_ALIGN(128)
-
-#define ALIGNX_POST(x)
-#define ALIGN4_POST
-#define ALIGN8_POST
-#define ALIGN16_POST
-#define ALIGN32_POST
-#define ALIGN128_POST
-#endif
-
 #define FCVAR_NONE				0 
 #define FCVAR_UNREGISTERED		(1<<0)
 #define FCVAR_DEVELOPMENTONLY	(1<<1)
