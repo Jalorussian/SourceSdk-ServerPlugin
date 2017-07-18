@@ -8,16 +8,16 @@ namespace SourceSdk
 	#ifdef WIN32
 	#ifndef MINGW
 		__asm
-		(
-			fld		DWORD PTR [radians]
+		{
+			fld		DWORD PTR[radians]
 			fsincos
 
-			mov edx, DWORD PTR [cosine]
-			mov eax, DWORD PTR [sine]
+			mov edx, DWORD PTR[cosine]
+			mov eax, DWORD PTR[sine]
 
-			fstp DWORD PTR [edx]
-			fstp DWORD PTR [eax]
-		);
+			fstp DWORD PTR[edx]
+			fstp DWORD PTR[eax]
+		}
 	#else
 		double __cosr, __sinr;
 		__asm ("fsincos" : "=t" (__cosr), "=u" (__sinr) : "0" (radians));
