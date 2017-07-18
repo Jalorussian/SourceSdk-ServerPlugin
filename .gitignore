@@ -91,7 +91,5 @@ Interfaces/Protobuf/protobuf-2.5.0/src/
 Interfaces/Protobuf/protobuf-2.5.0/stamp-h1
 Interfaces/Protobuf/protobuf-2.5.0/test-driver
 
-!Interfaces/Protobuf/protobuf-2.5.0/vsprojects/Release/libprotobuf.lib 
-!Interfaces/Protobuf/protobuf-2.5.0/vsprojects/Debug/libprotobuf.lib 
-!Interfaces/Protobuf/protobuf-2.5.0/src/.libs/libprotobuf.a
+!libs/*
 
