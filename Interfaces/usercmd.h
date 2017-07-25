@@ -111,6 +111,7 @@ namespace SourceSdk
 		int		weaponselect;
 		int		weaponsubtype;
 		int		random_seed;
+		int	server_random_seed;
 		short	mousedx;
 		short	mousedy;
 	};
