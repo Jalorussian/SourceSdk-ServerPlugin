@@ -158,6 +158,9 @@ namespace SourceSdk
 		typedef void(VFNT * MessageEnd_t)(void const * const);
 		extern volatile MessageEnd_t _vfptr_MessageEnd;
 
+		typedef edict_t*(VFNT * CreateFakeClient_t)(void const * const, char const *);
+		extern volatile CreateFakeClient_t _vfptr_CreateFakeClient;
+
 		typedef void(VFNT * LogPrint_t)(void const * const, char const *);
 		extern volatile LogPrint_t _vfptr_LogPrint;
 
