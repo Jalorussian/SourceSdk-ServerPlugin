@@ -1974,6 +1974,7 @@ namespace SourceSdk
 					INIT_VIRTUAL_FUNCTION(m_engineserver, 38, ServerExecute);
 					// UserMessageBegin
 					INIT_VIRTUAL_FUNCTION(m_engineserver, 44, MessageEnd);
+					INIT_VIRTUAL_FUNCTION(m_engineserver, 54, CreateFakeClient);
 					INIT_VIRTUAL_FUNCTION(m_engineserver, 45, SendUserMessage);
 					INIT_VIRTUAL_FUNCTION(m_engineserver, 72, LogPrint);
 					break;
@@ -1993,6 +1994,7 @@ namespace SourceSdk
 				INIT_VIRTUAL_FUNCTION(m_engineserver, 43, UserMessageBegin);
 				// SendUserMessage
 				INIT_VIRTUAL_FUNCTION(m_engineserver, 44, MessageEnd);
+				INIT_VIRTUAL_FUNCTION(m_engineserver, 54, CreateFakeClient);
 				INIT_VIRTUAL_FUNCTION(m_engineserver, 72, LogPrint);
 				break;
 			default:
@@ -2283,11 +2285,18 @@ namespace SourceSdk
 
 		volatile LogPrint_t _vfptr_LogPrint = nullptr;
 
+		volatile CreateFakeClient_t _vfptr_CreateFakeClient = nullptr;
+
 		volatile TraceRay_t _vfptr_TraceRay = nullptr;
 
 		void Call_ClipRayToEntity(void * ray, unsigned int fMask, IHandleEntity *pEnt, void *pTrace)
 		{
 			_vfptr_ClipRayToEntity(m_enginetrace, ray, fMask, pEnt, pTrace);
+		}
+
+		edict_t* Call_CreatFakeClient(char const * a)
+		{
+			return _vfptr_CreateFakeClient(m_engineserver, a);
 		}
 
 		float Call_GetTickInterval()
